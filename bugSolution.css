@@ -1,0 +1,24 @@
+/* Correct usage of calc() */
+#container {
+  width: calc(100% - 20px); /* Correct: subtracts fixed pixels from 100% of the parent container */
+}
+
+/* Incorrect usage of calc() leading to inconsistent layout */
+#element {
+  width: calc(50% - 20%); /* Incorrect: This attempts to subtract a percentage of an incompletely resolved element's width causing inconsistency */
+}
+
+/* Solution: Use fixed units or refactor to prevent circular dependency*/
+#elementSolution {
+  width: calc(50% - 20px); /*Corrected: Using fixed pixels for subtraction now resolves predictably*/
+}
+
+/*Inconsistent unit usage can lead to calc() ignoring the expression completely*/
+#inconsistent {
+  width: calc(100% - 20em);/*Potentially problematic: mixing percentages and ems, although this is not always an error. Consistency is key*/
+}
+/*Solution: Stick to a single unit type or create separate declarations*/
+#inconsistentSolution {
+  width: 100%;
+  margin-left: 20em;
+}
